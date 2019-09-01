@@ -1,1 +1,1 @@
-booktime-eshop
+E-shop web application based on book 'Practical Django 2 and Channels 2' by Federico Marani

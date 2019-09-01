@@ -1,0 +1,56 @@
+[
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Programming",
+    "slug": "programming",
+    "description": "Programming related books",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Finance",
+    "slug": "finance",
+    "description": "Finance related books",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Science Fiction",
+    "slug": "science-fiction",
+    "description": "All the best science fiction books",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Nonfiction",
+    "slug": "nonfiction",
+    "description": "Some food for thought",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Novel",
+    "slug": "novel",
+    "description": "A long work of narrative fiction",
+    "active": true
+  }
+},
+{
+  "model": "main.producttag",
+  "fields": {
+    "name": "Horror",
+    "slug": "horror",
+    "description": "Creepy stuff",
+    "active": true
+  }
+}
+]

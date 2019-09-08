@@ -87,6 +87,7 @@ class ProductImage(models.Model):
 
 class Address(models.Model):
     SUPPORTED_COUNTRIES = (
+        ("ru", "Russia"),
         ("uk", "United Kingdom"),
         ("us", "United States of America"),
     )
@@ -101,7 +102,7 @@ class Address(models.Model):
     )
     city = models.CharField(max_length=60)
     country = models.CharField(
-        max_length=3, choices=SUPPORTED_COUNTRIES
+        max_length=2, choices=SUPPORTED_COUNTRIES
     )
     def __str__(self):
         return ", ".join(

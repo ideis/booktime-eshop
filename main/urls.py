@@ -16,27 +16,37 @@ urlpatterns = [
     path(
         "about-us/",
         TemplateView.as_view(template_name="about_us.html"),
-        name="about_us",
+        name="about_us"
     ),
     path(
         "address/",
         views.AddressListView.as_view(),
-        name="address_list",
+        name="address_list"
     ),
     path(
        "address/create/",
         views.AddressCreateView.as_view(),
-        name="address_create",
+        name="address_create"
     ),
     path(
        "address/<int:pk>/",
        views.AddressUpdateView.as_view(),
-       name="address_update",
+       name="address_update"
     ),
     path(
        "address/<int:pk>/delete/",
        views.AddressDeleteView.as_view(),
-       name="address_delete",
+       name="address_delete"
+    ),
+    path(
+        "add_to_basket/",
+        views.add_to_basket,
+        name="add_to_basket"
+    ),
+    path(
+        "basket/",
+        views.manage_basket,
+        name="basket"
     ),
     path(
         "contact-us/",
@@ -49,17 +59,17 @@ urlpatterns = [
             template_name="login.html",
             form_class=forms.AuthenticationForm,
         ),
-        name="login",
+        name="login"
     ),
     path(
         "products/<slug:tag>/",
         views.ProductListView.as_view(),
-        name="products",
+        name="products"
     ),
     path(
         "product/<slug:slug>/",
         DetailView.as_view(model=models.Product),
-        name="product",
+        name="product"
     ),
     path(
         "signup/",

@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UsernameField
 from django.contrib.auth.forms import UserCreationForm as DjangoUserCreationForm
 
 from . import models
+from . import widgets
 
 import logging
 logger = logging.getLogger(__name__)
@@ -79,3 +80,11 @@ class AuthenticationForm(forms.Form):
 
     def get_user(self):
         return self.user
+
+BasketLineFormSet = forms.inlineformset_factory(
+    models.Basket,
+    models.BasketLine,
+    fields=("quantity",),
+    extra=0,
+    widgets={"quantity": widgets.PlusMinusNumberInput()},
+)

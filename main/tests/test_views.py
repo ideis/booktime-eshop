@@ -92,6 +92,7 @@ class TestPage(TestCase):
         self.assertIsInstance(
             response.context["form"], forms.UserCreationForm
         )
+
     def test_user_signup_page_submission_works(self):
         post_data = {
             "email": "user@domain.com",
@@ -115,3 +116,58 @@ class TestPage(TestCase):
             auth.get_user(self.client).is_authenticated
         )
         mock_send.assert_called_once()
+
+    def test_address_list_page_returns_only_owned(self):
+        user1 = models.User.objects.create_user(
+            "user1", "passw42"
+        )
+        user2 = models.User.objects.create_user(
+            "user2", "passw42"
+        )
+        models.Address.objects.create(
+            user=user1,
+            name="john kimball",
+            address1="Kings cross 1",
+            address2="Kings cross 10",
+            city="London",
+            country="uk",
+        )
+        models.Address.objects.create(
+            user=user2,
+            name="ivan ivanov",
+            address1="Minina 1",
+            city="Nizhy Novgorod",
+            country="ru",
+        )
+
+        self.client.force_login(user2)
+        response = self.client.get(reverse("address_list"))
+        self.assertEqual(response.status_code, 200)
+
+        address_list = models.Address.objects.filter(user=user2)
+        self.assertEqual(
+            list(response.context["object_list"]),
+            list(address_list),
+        )
+
+    def test_address_create_stores_user(self):
+        user1 = models.User.objects.create_user(
+            "user1", "pw432joij"
+        )
+        post_data = {
+            "name": "petr petrov",
+            "address1": "Tverskaya 1",
+            "address2": "",
+            "zip_code": "42",
+            "city": "Moscow",
+            "country": "ru",
+        }
+
+        self.client.force_login(user1)
+        response = self.client.post(
+            reverse("address_create"), post_data
+        )
+
+        self.assertTrue(
+            models.Address.objects.filter(user=user1).exists()
+        )

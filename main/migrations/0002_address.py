@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('address2', models.CharField(blank=True, max_length=60, verbose_name='Address line 2')),
                 ('zip_code', models.CharField(max_length=12, verbose_name='ZIP / Postal code')),
                 ('city', models.CharField(max_length=60)),
-                ('country', models.CharField(choices=[('uk', 'United Kingdom'), ('us', 'United States of America')], max_length=3)),
+                ('country', models.CharField(choices=[('ru', 'Russia'), ('uk', 'United Kingdom'), ('us', 'United States of America')], max_length=2)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),

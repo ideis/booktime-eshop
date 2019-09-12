@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>Basket</h2>
+<div class="container">
+  <h3>Basket</h3>
   {% if formset %}
-    <p>You can adjust the quantities below.</p>
     <form method="POST">
       {% csrf_token %}
       {{ formset.management_form }}
       {% for form in formset %}
-        <p>
-          {{ form.instance.product.name }}
-          {{ form }}
-        </p>
+        {{form.instance.product.name }}
+        <p>{{ form}}</p>
+        <hr>
       {% endfor %}
       <button type="submit" class="btn btn-­default">Update basket</button>
       {% if user.is_authenticated %}
@@ -28,10 +27,18 @@
   {% else %}
     <p>You have no items in the basket.</p>
   {% endif %}
+</div>
 {% endblock content %}
 
 {% block js %}
   {% if formset %}
     {{ formset.media }}
   {% endif %}
+  <script>
+    var elems = document.querySelectorAll('label.form-check-label');
+    for (i = 0; i < elems.length; i++) {
+    elems[i].style.display = "inline";
+    }
+  </script>
+
 {% endblock js %}

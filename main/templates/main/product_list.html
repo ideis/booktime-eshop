@@ -1,44 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Books</h1>
+<div class="container">
+  <h3>Books</h3>
+  <hr>
   {% for product in page_obj %}
-    <p>{{ product.name }}</p>
     <p>
-      <a href="{% url "product" product.slug %}">See it here</a>
+      <a href="{% url "product" product.slug %}"> {{ product.name }}</a>
     </p>
     {% if not forloop.last %}
       <hr>
     {% endif %}
   {% endfor %}
-  <nav>
-    <ul class="pagination">
+
+  <nav class="teal lighten-1">
+    <ul class="pagination ">
       {% if page_obj.has_previous %}
-        <li class="page-item">
+        <li class="page-item white-text">
           <a
-            class="page-link"
+            class="page-link white-text"
             href="?page={{page_obj.previous_page_number}}">Previous</a>
         </li>
       {% else %}
         <li class="page-item disabled">
-          <a class="page-link" href="#">Previous</a>
+          <a class="page-link white-text" href="#">Previous</a>
         </li>
       {% endif %}
       {% for pagenum in page_obj.paginator.page_range %}
         <li
-          class="page-item{% if page_obj.number == pagenum %} active{% endif %}">
-          <a class="page-link" href="?page={{pagenum}}">{{pagenum}}</a>
+          class="teal lighten-1 page-item{% if page_obj.number == pagenum %} active{% endif %}">
+          <a class="page-link white-text" href="?page={{pagenum}}">{{pagenum}}</a>
         </li>
       {% endfor %}
       {% if page_obj.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?page={{page_obj.next_page_number}}">Next</a>
+        <li class="page-item white-text">
+          <a class="page-link white-text" href="?page={{page_obj.next_page_number}}">Next</a>
         </li>
       {% else %}
         <li class="page-item disabled">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link white-text" href="#">Next</a>
         </li>
       {% endif %}
     </ul>
   </nav>
+</div>
 {% endblock content %}

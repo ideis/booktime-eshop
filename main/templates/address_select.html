@@ -2,10 +2,20 @@
 
 {% block content %}
   <h2>Select the billing/shipping addresses</h2>
+
   <form method="POST">
-    {%  csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-­primary">Submit</button>
-    <a class="btn btn-primary" href="{% url "address_create" %}">Add a new one</a>
-  </form>
+      {%  csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-­primary">Submit</button>
+      <a class="btn btn-primary" href="{% url "address_create" %}">Add a new one</a>
+    </form>
 {% endblock content %}
+
+{% block js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+    });
+  </script>
+{% endblock js %}

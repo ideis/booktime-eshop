@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>List of your addresses:</h1>
+<div class="container">
+  <h3>List of your addresses:</h3>
   {% for address in object_list %}
     <p>
       {{ address.name }}<br>
@@ -23,4 +24,5 @@
   <p>
     <a href="{% url "address_create" %}">Add new address</a>
   </p>
+</div>
 {% endblock content %}

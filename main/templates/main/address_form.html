@@ -8,3 +8,12 @@
   <button type="submit" class="btn btn-­primary">Submit</button>
 </form>
 {% endblock content %}
+
+{% block js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems);
+        });
+  </script>
+{% endblock js %}

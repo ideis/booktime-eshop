@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Books</h1>
+
+<div class="container">
+  <h2>Books</h2>
+  <a href="{% url "add_to_basket" %}?product_id={{ object.id }}"> Add to basket </a>
   <table class="table">
     <tr>
       <th>Name</th>
@@ -36,6 +39,6 @@
         <td>{{ object.date_updated|date:"F Y" }}</td>
       </tr>
     </table>
+</div>
 
-    <a href="{% url "add_to_basket" %}?product_id={{ object.id }}"> Add to basket </a>
 {% endblock content %}
